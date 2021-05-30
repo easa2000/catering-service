@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function ValidateForm(){
+			if(document.myForm.name.value == ""){
+				alert("Please provide your name!");
+				document.myForm.name.focus();
+				return false
+			}
+			if(document.myForm.email.value ==""){
+				alert("Please provide your E-mail!");
+				document.myForm.email.focus();
+				return false;
+			}
+			if(document.myForm.number.value == "" || isNaN(document.myForm.number.value) || document.myForm.number.value.length != 10){
+				alert("Please provide a valid Phone number");
+				document.myForm.number.focus();
+				return false;
+			}
+			return true;
+		}
+
+		function calculateBill(val){
+			var item1,item2,item3,item4,bill;
+			item1 = item2 = item3 = item4 = bill = 0;
+			if (document.myForm.item1.value != "") {
+				item1 = Number(document.myForm.item1.value) * 50;
+			}
+			if(document.myForm.item2.value != ""){
+				item2 = Number(document.myForm.item2.value) * 40;
+			}
+			if(document.myForm.item3.value != ""){
+				item3 = Number(document.myForm.item3.value) * 30;
+			}
+			if(document.myForm.item4.value != ""){
+				item4 = Number(document.myForm.item4.value) * 25;
+			}
+
+			bill = item1 + item2 + item3 + item4;
+			document.getElementById('mybill').innerHTML = bill;
+		}
+	</script>
+</head>
+<body>
+	<form name="myForm" method="post" 
+	onsubmit="return ValidateForm();">
+		<table border="1">
+			<tr>
+				<th colspan="3">Personal Details</th>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td colspan="2">
+					<input type="text" name="name" size="20">
+				</td>
+			</tr>
+
+			<tr>
+				<td>E-mail:</td>
+				<td colspan="2">
+					<input type="text" name="email" size="25">
+				</td>
+			</tr>
+
+			<tr>
+				<td>Phone number</td>
+				<td colspan="2">
+					<input type="text" name="number" size="10">
+				</td>
+			</tr>
+
+			<tr>
+				<td>Detailed Address</td>
+				<td colspan="2">
+					<input type="text" name="address" size="50">
+				</td>
+			</tr>
+
+			<tr>
+				<th colspan="3">Order Details</th>
+			</tr>
+
+			<tr>
+				<th>Name of Item</th>
+				<th>Cost</th>
+				<th>item/Qty</th>
+			</tr>
+
+			<tr>
+				<td> Dosa </td>
+				<td> Rs.50</td>
+				<td><input type="text" name="item1" size="4"></td>
+			</tr>
+
+			<tr>
+				<td> Idli Plate(per plate qty:2) </td>
+				<td> Rs.40</td>
+				<td><input type="text" name="item2" size="4"></td>
+			</tr>
+
+			<tr>
+				<td> Poratta(per plate qty:3) </td>
+				<td> Rs.30</td>
+				<td><input type="text" name="item3" size="4"></td>
+			</tr>
+
+			<tr>
+				<td> Pongal </td>
+				<td> Rs.25</td>
+				<td><input type="text" name="item4" size="4"></td>
+			</tr>
+
+			<tr>
+				<td colspan="2">Total</td>
+				<td><label id="mybill"></label></td>
+			</tr>
+			
+		</table>
+
+		<p>
+			<input type="button" value="Show Total Bill" onclick="calculateBill()">
+		</p>
+
+		<p>
+			<input type="submit" value="Submit" name="b1">
+		</p>
+	</form>
+
+</body>
+</html>
